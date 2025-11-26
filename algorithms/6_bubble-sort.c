@@ -1,4 +1,5 @@
 /* 
+ * Сортировка пузырьком
  * Один из наиболее медленных видов сортировки - попарное сравнение двух соседних элементов и перетасовка их в порядке возрастания.
  * Квадратичная сложность
  */
@@ -10,12 +11,20 @@ int array[7] = {8, 4, 3, -5, 2, 9, 10};
 int bubble_sort(int arr[], int len) {
   // Thanks to nested loop that both start with first element we can pairly compair two elements
   for (int i = 0; i < len; i++) {
+    int swapped = 0;
+
     for (int j = 0; j < len; j++) {
       if (arr[j] > arr[j + 1]) {
         // Swap two elements
         int min = arr[j + 1];
         arr[j + 1] = arr[j];
         arr[j] = min;
+        swapped = 1;
+      }
+
+      // This condition makes the algorithms complexity - Omega(N) - exit the loop if the array is already sorted
+      if (!swapped) {
+        return 0;
       }
     }
   }
